@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+
+{% block page_content %}
+
+<style>
+	.flex-container {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+	}
+
+	/* Responsive layout - makes a one column layout instead of a two-column layout */
+	@media (max-width: 300px) {
+		.flex-container {
+			flex-direction: column;
+		}
+	}
+
+	.flex-item{
+		padding: 10px;
+	}
+</style>
+
+
+<div class="col-md-8 offset-md-2">
+	<h1>4U main page</h1>
+	<hr>
+	{{ Tut.tutorial_Video }}
+	<div class="flex-container">
+	{% for t in Tut %}
+		<div class="flex-item">
+			<h2><a href="{% url 'blog_detail' t.pk %}">{{ t.tutorial_Title}}</a></h2>
+			{% video t.tutorial_Video 'tiny' %}
+			<p>{{ t.tutorial_Body | slice:':400' }}...</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{%endblock%}
