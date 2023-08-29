@@ -3,6 +3,12 @@
 
 {% block page_content %}
 
+<form action="/blog/" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit">
+</form>
+
 <style>
 	.flex-container {
 		display: flex;
@@ -10,6 +16,7 @@
 		flex-direction: row;
 		
 	}
+	
 
 	/* Responsive layout - makes a one column layout instead of a two-column layout */
 	@media (max-width: 300px) {
@@ -38,5 +45,6 @@
 		{% endfor %}
 	</div>
 </div>
+
 
 {%endblock%}
